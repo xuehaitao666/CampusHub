@@ -1,0 +1,42 @@
+# Node.js 依赖
+node_modules/
+
+# 敏感环境变量
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 日志
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 上传及临时文件
+uploads/
+tmp/
+public/uploads/
+
+# 进程配置
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# 测试
+coverage/
+.nyc_output/
+
+# 编译输出
+dist/
+build/
+out/
+
+# 编辑器和系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

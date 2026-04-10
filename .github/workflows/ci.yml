@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build:
+    name: Build & Compile Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Frontend dependencies and build
+      - name: Install Frontend Dependencies
+        working-directory: ./campushub-frontend
+        run: npm ci
+
+      - name: Build Frontend
+        working-directory: ./campushub-frontend
+        run: npm run build
+
+      # Backend dependencies and optional build
+      - name: Install Backend Dependencies
+        working-directory: ./campushub-backend
+        run: npm ci
+
+      - name: Build Backend (if applicable)
+        working-directory: ./campushub-backend
+        run: npm run build --if-present
+
+  lint:
+    name: Lint Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Frontend lint
+      - name: Install Frontend Dependencies
+        working-directory: ./campushub-frontend
+        run: npm ci
+
+      - name: Lint Frontend
+        working-directory: ./campushub-frontend
+        run: npm run lint
+
+      # Backend lint
+      - name: Install Backend Dependencies
+        working-directory: ./campushub-backend
+        run: npm ci
+
+      - name: Lint Backend
+        working-directory: ./campushub-backend
+        run: npm run lint
