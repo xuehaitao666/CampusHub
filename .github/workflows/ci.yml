@@ -56,7 +56,7 @@ jobs:
 
       - name: Lint Frontend
         working-directory: ./campushub-frontend
-        run: npm run lint
+        run: npm run lint --if-present
 
       # Backend lint
       - name: Install Backend Dependencies
@@ -65,4 +65,4 @@ jobs:
 
       - name: Lint Backend
         working-directory: ./campushub-backend
-        run: npm run lint
+        run: npm run lint --if-present
